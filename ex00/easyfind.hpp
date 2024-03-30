@@ -3,17 +3,16 @@
 
 #include <iostream>
 #include <list>
+#include <algorithm>
 
 template <typename T>void easyfind(const T &container, int n) {
-	std::cout << "-*-*- easyfind -*-*-" << std::endl;
-	T::iterator it = container.find(n);
+	typename T::const_iterator it = std::find(container.begin(), container.end(), n);
 
-	if (it != container.end()) {
+	if (it != container.end())
 		std::cout << "FIND!" << std::endl;
-	} else {
+	else
 		std::cerr << "404" << std::endl;
-	}
-	return
+	return ;
 }
 
 //is_same_v, is_integral_vはc++98で使えない

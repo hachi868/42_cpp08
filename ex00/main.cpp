@@ -9,28 +9,32 @@ int main()
 {
 	{
 		std::cout << "[test0] vector" << std::endl;
-		std::vector<int> contVector1 = {1, 2, 3, 4, 5, 6};
-		(void)contVector1;
+		//c++98では初期化リスト不可
+		//std::vector<int> contVector1 = {1, 2, 3, 4, 5, 6};
+		int arr[] = {1, 2, 3, 4, 5, 6};
+		std::vector<int> contVector1(arr, arr + sizeof(arr) / sizeof(arr[0]));
+		easyfind(contVector1, 4);
+		easyfind(contVector1, 0);
 	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
-	{
-		std::cout << "[test0] vector(string)" << std::endl;
-		std::vector<std::string> contVector2 = {"str1", "str2", "str3", "str4", "str5", "str6"};
-		(void)contVector2;
-	}
-	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
-	{
-		std::cout << "[test0] deque" << std::endl;
-		std::vector<int> contDeque = {1, 2, 3, 4, 5, 6};
-		(void)contDeque;
-	}
-	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
-	{
-		std::cout << "[test0] list" << std::endl;
-		std::vector<int> contList = {1, 2, 3, 4, 5, 6};
-		(void)contList;
-
-	}
+//	{
+//		std::cout << "[test0] vector(string)" << std::endl;
+//		std::vector<std::string> contVector2 = {"str1", "str2", "str3", "str4", "str5", "str6"};
+//		(void)contVector2;
+//	}
+//	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
+//	{
+//		std::cout << "[test0] deque" << std::endl;
+//		std::vector<int> contDeque = {1, 2, 3, 4, 5, 6};
+//		(void)contDeque;
+//	}
+//	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
+//	{
+//		std::cout << "[test0] list" << std::endl;
+//		std::vector<int> contList = {1, 2, 3, 4, 5, 6};
+//		(void)contList;
+//
+//	}
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
 	return (0);
 }
