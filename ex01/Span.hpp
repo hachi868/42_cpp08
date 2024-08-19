@@ -24,12 +24,14 @@ public:
     void fillRange(int a, int b);
     void checkContainerSize();
     void sortIfNeeded();
+    void printContainer();
 
     const static std::string RESET;
     const static std::string DEBUG;
     const static std::string STATE;
     const static std::string ALERT;
     const static std::string MSG;
+    const static std::string ERROR;
 
     //throw
     class CapacityExceededException : public std::exception {

@@ -5,6 +5,7 @@ const std::string Span::DEBUG = "\033[90m";
 const std::string Span::STATE = "\033[36m";
 const std::string Span::ALERT = "\033[31m";
 const std::string Span::MSG = "\033[34m";
+const std::string Span::ERROR = "\033[31m";
 
 Span::Span(unsigned int N) : N_(N), container_(), isSorted_(false)
 {
@@ -56,8 +57,7 @@ size_t Span::longestSpan(void)
 {
     checkContainerSize();
     sortIfNeeded();
-
-    return (container_.back() - container_.front());
+    return (static_cast<long long>(container_.back()) - static_cast<long long>(container_.front()));
 }
 
 void Span::fillRange(int a, int b)
@@ -95,6 +95,14 @@ void Span::sortIfNeeded()
         std::sort(container_.begin(), container_.end());
         isSorted_ = true;
     }
+}
+
+void Span::printContainer()
+{
+    for (std::vector<int>::iterator it = container_.begin(); it != container_.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }
 
 const char* Span::CapacityExceededException::what() const throw()
