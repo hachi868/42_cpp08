@@ -38,6 +38,7 @@ public:
 private:
     unsigned int N_;
     std::vector<int> container_;
+    bool isSorted_;
     Span();
 };
 

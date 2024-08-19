@@ -6,12 +6,12 @@ const std::string Span::STATE = "\033[36m";
 const std::string Span::ALERT = "\033[31m";
 const std::string Span::MSG = "\033[34m";
 
-Span::Span(unsigned int N) : N_(N), container_(N)
+Span::Span(unsigned int N) : N_(N), container_(N), isSorted_(false)
 {
     std::cout << Span::DEBUG << "[Span] constructor called (N)" << Span::RESET << std::endl;
 }
 
-Span::Span(const Span &obj) : N_(obj.N_), container_(obj.container_)
+Span::Span(const Span &obj) : N_(obj.N_), container_(obj.container_), isSorted_(false)
 {
     std::cout << Span::DEBUG << "[Span] copy constructor called" << Span::RESET << std::endl;
 }
@@ -22,6 +22,7 @@ Span &Span::operator = (const Span &obj)
     if (this != &obj) {
         this->N_ = obj.N_;
         this->container_ = obj.container_;
+        this->isSorted_ = false;
     }
     return (*this);
 }
