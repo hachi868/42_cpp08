@@ -6,7 +6,7 @@ const std::string Span::STATE = "\033[36m";
 const std::string Span::ALERT = "\033[31m";
 const std::string Span::MSG = "\033[34m";
 
-Span::Span(unsigned int N) : N_(N), container_(N), isSorted_(false)
+Span::Span(unsigned int N) : N_(N), container_(), isSorted_(false)
 {
     std::cout << Span::DEBUG << "[Span] constructor called (N)" << Span::RESET << std::endl;
 }
@@ -74,7 +74,7 @@ void Span::fillRange(int a, int b)
     if (a > b)
         std::swap(a, b);
     std::vector<int> rangeToAdd(b - a + 1);
-    for (int i = 0; i < rangeToAdd.size(); i++)
+    for (size_t i = 0; i < rangeToAdd.size(); i++)
         rangeToAdd[i] = a + i;
     if (isSorted_ && container_.back() > rangeToAdd.front()) {
         isSorted_ = false;
