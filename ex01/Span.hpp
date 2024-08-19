@@ -3,9 +3,13 @@
 
 #include <stdio.h>
 #include <iostream>
-//#include <list>
-//#include <algorithm>
+#include <algorithm>
 #include <vector>
+#include <limits>
+
+template <typename T>T min(const T &a, const T &b) {
+    return (a < b) ? a : b;
+}
 
 class Span {
 public:
@@ -15,9 +19,11 @@ public:
     ~Span();
 
     void addNumber(int a);
-    size_t shortestSpan(void) const;
-    size_t longestSpan(void) const;
+    size_t shortestSpan(void);
+    size_t longestSpan(void);
     void fillRange(int a, int b);
+    void checkContainerSize();
+    void sortIfNeeded();
 
     const static std::string RESET;
     const static std::string DEBUG;
@@ -26,12 +32,12 @@ public:
     const static std::string MSG;
 
     //throw
-    class fullAlready : public std::exception {
+    class fullAlreadyException : public std::exception {
     public:
         virtual const char* what() const throw();
     };
 
-    class InvalidSpan : public std::exception {
+    class InvalidSpanException : public std::exception {
     public:
         virtual const char* what() const throw();
     };

@@ -35,18 +35,29 @@ Span::~Span()
 void	Span::addNumber(int a)
 {
     if (container_.size() >= N_)
-        throw fullAlready();
+        throw fullAlreadyException();
     container_.push_back(a);
+    isSorted_ = false;
 }
 
-size_t Span::shortestSpan(void) const
+size_t Span::shortestSpan(void)
 {
-    return 0;
+    checkContainerSize();
+    sortIfNeeded();
+
+    size_t minSpan = std::numeric_limits<size_t>::max();
+    for (size_t i = 1; i < container_.size(); ++i) {
+        minSpan = min(minSpan, (size_t)container_[i] - container_[i - 1]);
+    }
+    return minSpan;
 }
 
-size_t Span::longestSpan(void) const
+size_t Span::longestSpan(void)
 {
-    return 0;
+    checkContainerSize();
+    sortIfNeeded();
+
+    return (container_.back() - container_.front());
 }
 
 void Span::fillRange(int a, int b)
@@ -54,12 +65,27 @@ void Span::fillRange(int a, int b)
 
 }
 
-const char* Span::fullAlready::what() const throw()
+void Span::checkContainerSize()
+{
+    if (container_.size() < 2) {
+        throw InvalidSpanException();
+    }
+}
+
+void Span::sortIfNeeded()
+{
+    if (!isSorted_) {
+        std::sort(container_.begin(), container_.end());
+        isSorted_ = true;
+    }
+}
+
+const char* Span::fullAlreadyException::what() const throw()
 {
     return ("container is full already.");
 }
 
-const char* Span::InvalidSpan::what() const throw()
+const char* Span::InvalidSpanException::what() const throw()
 {
     return ("No span can be found. The collection is either empty or has only one element.");
 }
