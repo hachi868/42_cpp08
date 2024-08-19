@@ -32,7 +32,7 @@ public:
     const static std::string MSG;
 
     //throw
-    class fullAlreadyException : public std::exception {
+    class CapacityExceededException : public std::exception {
     public:
         virtual const char* what() const throw();
     };

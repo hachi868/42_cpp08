@@ -35,7 +35,7 @@ Span::~Span()
 void	Span::addNumber(int a)
 {
     if (container_.size() >= N_)
-        throw fullAlreadyException();
+        throw CapacityExceededException();
     container_.push_back(a);
     isSorted_ = false;
 }
@@ -62,7 +62,24 @@ size_t Span::longestSpan(void)
 
 void Span::fillRange(int a, int b)
 {
-
+    //1つならaddNumber
+    if (a == b) {
+        addNumber(a);
+        return;
+    }
+    //追加しきれなければ例外投げる
+    if (container_.size() + (abs(b - a) + 1) > N_)
+        throw CapacityExceededException();
+    //a<b確定の上、追加
+    if (a > b)
+        std::swap(a, b);
+    std::vector<int> rangeToAdd(b - a + 1);
+    for (int i = 0; i < rangeToAdd.size(); i++)
+        rangeToAdd[i] = a + i;
+    if (isSorted_ && container_.back() > rangeToAdd.front()) {
+        isSorted_ = false;
+    }
+    container_.insert(container_.end(), rangeToAdd.begin(), rangeToAdd.end());
 }
 
 void Span::checkContainerSize()
@@ -80,9 +97,9 @@ void Span::sortIfNeeded()
     }
 }
 
-const char* Span::fullAlreadyException::what() const throw()
+const char* Span::CapacityExceededException::what() const throw()
 {
-    return ("container is full already.");
+    return ("This addition would exceed the container's capacity.");
 }
 
 const char* Span::InvalidSpanException::what() const throw()
