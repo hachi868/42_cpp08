@@ -7,15 +7,29 @@ static void destructor() {
 
 int main()
 {
+    //c++98では初期化リスト不可
+    //std::vector<int> contVector = {1, 2, 3, 4, 5, 6};
+    int arr[] = {1, 2, 3, 4, 5, 6};
 	{
-		//c++98では初期化リスト不可
-		//std::vector<int> contVector1 = {1, 2, 3, 4, 5, 6};
-        int arr[] = {1, 2, 3, 4, 5, 6};
-        std::vector<int> contVector1(arr, arr + sizeof(arr) / sizeof(arr[0]));
-		easyfind(contVector1, 4);
-        easyfind(contVector1, 0);
+        std::cout << "[test 0] vector" << std::endl;
+        std::vector<int> contVector(arr, arr + sizeof(arr) / sizeof(arr[0]));
+		easyfind(contVector, 4);
+        easyfind(contVector, 0);
 	}
-
+    std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
+    {
+        std::cout << "[test 1] deque" << std::endl;
+        std::deque<int> contDeque(arr, arr + sizeof(arr) / sizeof(int));
+        easyfind(contDeque, 4);
+        easyfind(contDeque, 0);
+    }
+    std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
+    {
+        std::cout << "[test 2] list" << std::endl;
+        std::list<int> contList(arr, arr + sizeof(arr) / sizeof(int));
+        easyfind(contList, 4);
+        easyfind(contList, 0);
+    }
 	std::cout << "*-*-*-*-*-*-*" << std::endl << std::endl;
 	return (0);
 }

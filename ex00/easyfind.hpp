@@ -4,6 +4,8 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <deque>
+#include <list>
 
 #define MSG "\033[34m"
 #define ERROR "\033[31m"
