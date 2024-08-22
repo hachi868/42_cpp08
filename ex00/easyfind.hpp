@@ -2,8 +2,8 @@
 #define EASYFIND_HPP
 
 #include <iostream>
-#include <list>
 #include <algorithm>
+#include <vector>
 
 #define MSG "\033[34m"
 #define ERROR "\033[31m"

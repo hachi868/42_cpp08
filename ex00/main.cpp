@@ -1,5 +1,4 @@
 #include "easyfind.hpp"
-#include <vector>
 
 __attribute__((destructor))
 static void destructor() {
