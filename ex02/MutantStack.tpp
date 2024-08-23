@@ -41,12 +41,67 @@ MutantStack<T, Container>::~MutantStack() {
 }
 
 //c はコンテナオブジェクトのメンバ変数。std::stackで定義
+
+// begin / end
 template <typename T, typename Container>
 typename MutantStack<T, Container>::iterator MutantStack<T, Container>::begin() {
     return (this->c.begin());
 }
 
 template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::begin() const {
+    return (const_cast<Container&>(this->c).begin());
+}
+
+template <typename T, typename Container>
 typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end() {
     return (this->c.end());
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end() const {
+    return (const_cast<Container&>(this->c).end());
+}
+
+// cbegin / cend
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::cbegin() const {
+    return (const_cast<Container&>(this->c).begin());
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::cend() const {
+    return (const_cast<Container&>(this->c).end());
+}
+
+// rbegin / rend
+template <typename T, typename Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rbegin() {
+    return (this->c.end());
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rbegin() const {
+    return (const_cast<Container&>(this->c).end());
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rend() {
+    return (this->c.begin());
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rend() const {
+    return (const_cast<Container&>(this->c).begin());
+}
+
+// crbegin / crend
+template <typename T, typename Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::crbegin() const {
+    return (const_cast<Container&>(this->c).end());
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::crend() const {
+    return (const_cast<Container&>(this->c).begin());
 }

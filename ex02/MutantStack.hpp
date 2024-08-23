@@ -2,7 +2,6 @@
 #define MUTANTSTACK_HPP
 
 #include <algorithm>
-#include <vector>
 #include <iostream>
 #include <stack>
 #include <deque>
@@ -18,9 +17,30 @@ public:
 
     //iterator
     typedef typename Container::iterator iterator;
+    typedef typename Container::reverse_iterator reverse_iterator;
 
+    // begin / end
     iterator begin();
+    iterator begin() const;
+
     iterator end();
+    iterator end() const;
+
+    // cbegin / cend
+    iterator cbegin() const;
+
+    iterator cend() const;
+
+    // rbegin / rend
+    reverse_iterator rbegin();
+    reverse_iterator rbegin() const;
+
+    reverse_iterator rend();
+    reverse_iterator rend() const;
+
+    // crbegin / crend
+    reverse_iterator crbegin() const;
+    reverse_iterator crend() const;
 
     //print
     const static std::string RESET;
@@ -29,20 +49,13 @@ public:
     const static std::string ALERT;
     const static std::string MSG;
     const static std::string ERROR;
-
-    //throw
-//    class CapacityExceededException : public std::exception {
-//    public:
-//        virtual const char* what() const throw();
-//    };
-
-//private:
 };
 
 #include "MutantStack.tpp"
 
 #endif //MUTANTSTACK_HPP
 
+//iteratorはconst_iteratorにcast可能。逆は無理
 
 //template <typename T, typename Container = std::deque<T>>
 //class stack {
